@@ -9,19 +9,6 @@ var app              = express();
 const mongo_url      = 'mongodb://localhost:27017/rsocket?maxPoolSize=10';
 
 /* Add express request logger */
-app.use( e_logger({
-	format: "HTTP :incoming :status-code :method :url :remote-address",
-	excludes : [ 'req' , 'res', 'req-headers', 'res-headers', 'user-agent',
-		'body', 'short-body', 'response-hrtime', 'http-version',
-		'incoming', 'remote-address', 'method', 'url', 'status-code', 'ip'
-	],
-	levelFn : function (status) {
-		if (status >= 500)
-			return 'error';
-		if (status >= 400)
-			return 'warn';
-	},
-}));
 
 app.use( bodyParser.json ({ limit: '50mb' }) );
 app.use( bodyParser.urlencoded ({ extended: false }) );
